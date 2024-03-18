@@ -1,6 +1,12 @@
 import template from './template.html';
 import './style.scss';
+import { componentProxy } from '../proxy';
 
-Vue.component('ui-view', {
+componentProxy('ui-view', {
   template,
+  methods: {
+    clicked() {
+      this.$emit('tap');
+    },
+  },
 });

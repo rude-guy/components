@@ -2,6 +2,52 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/proxy/index.js":
+/*!****************************!*\
+  !*** ./src/proxy/index.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   componentProxy: () => (/* binding */ componentProxy)
+/* harmony export */ });
+function componentProxy(name, opts) {
+  opts.mixins = [{
+    created: function created() {
+      var _this = this;
+      var _loop = function _loop() {
+          if (!/^bind/.test(attr)) {
+            return 0; // continue
+          }
+          if (!_this.$attrs[attr]) {
+            return 0; // continue
+          }
+          var eventName = attr.replace(/^bind(.+)/, '$1');
+          var methodName = _this.$attrs[attr];
+          var bridgeInfo = _this.$vnode.context._bridgeInfo;
+          _this.$on(eventName, function () {
+            window.JSBridge.onReceiveUIMessage({
+              type: 'triggerEvent',
+              body: {
+                methodName: methodName,
+                id: bridgeInfo.id
+              }
+            });
+          });
+        },
+        _ret;
+      for (var attr in this.$attrs) {
+        _ret = _loop();
+        if (_ret === 0) continue;
+      }
+    }
+  }];
+  Vue.component(name, opts);
+}
+
+/***/ }),
+
 /***/ "./src/view/index.js":
 /*!***************************!*\
   !*** ./src/view/index.js ***!
@@ -11,10 +57,17 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/view/template.html");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/view/style.scss");
+/* harmony import */ var _proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../proxy */ "./src/proxy/index.js");
 
 
-Vue.component('ui-view', {
-  template: _template_html__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+(0,_proxy__WEBPACK_IMPORTED_MODULE_2__.componentProxy)('ui-view', {
+  template: _template_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+  methods: {
+    clicked: function clicked() {
+      this.$emit('tap');
+    }
+  }
 });
 
 /***/ }),
@@ -30,7 +83,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<div class=\"wx-view\">\n  <slot></slot>\n</div>\n";
+var code = "<div class=\"wx-view\" @click=\"clicked\">\n  <slot></slot>\n</div>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 

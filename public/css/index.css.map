@@ -1,0 +1,1 @@
+{"version":3,"file":"css/index.css","mappings":";;;AAAA;EACE,cAAc","sources":["webpack://components/./src/view/style.scss"],"sourcesContent":[".wx-view {\n  display: block;\n}\n"],"names":[],"sourceRoot":""}

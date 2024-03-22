@@ -48,6 +48,31 @@ function componentProxy(name, opts) {
 
 /***/ }),
 
+/***/ "./src/text/index.js":
+/*!***************************!*\
+  !*** ./src/text/index.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/text/template.html");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/text/style.scss");
+/* harmony import */ var _proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../proxy */ "./src/proxy/index.js");
+
+
+
+(0,_proxy__WEBPACK_IMPORTED_MODULE_2__.componentProxy)('ui-text', {
+  template: _template_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: {
+    userSelect: {
+      type: Boolean,
+      "default": false
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./src/view/index.js":
 /*!***************************!*\
   !*** ./src/view/index.js ***!
@@ -72,6 +97,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/text/template.html":
+/*!********************************!*\
+  !*** ./src/text/template.html ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Module
+var code = "<span class=\"ui-text\" :class=\"{'ui-text__can-select': userSelect}\">\n  <slot></slot>\n</span>\n";
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
+
+/***/ }),
+
 /***/ "./src/view/template.html":
 /*!********************************!*\
   !*** ./src/view/template.html ***!
@@ -83,9 +125,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<div class=\"wx-view\" @click=\"clicked\">\n  <slot></slot>\n</div>\n";
+var code = "<div class=\"ui-view\" @click=\"clicked\">\n  <slot></slot>\n</div>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
+
+/***/ }),
+
+/***/ "./src/text/style.scss":
+/*!*****************************!*\
+  !*** ./src/text/style.scss ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -165,6 +219,8 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/view/index */ "./src/view/index.js");
+/* harmony import */ var _text_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/text/index */ "./src/text/index.js");
+
 
 })();
 
